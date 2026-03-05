@@ -1,0 +1,16 @@
+{
+  "name": "qa-play-sim-cypress-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Suíte de testes E2E com Cypress para o sistema qa-play-sim.lovable.app",
+  "scripts": {
+    "cy:open": "cypress open --config chromeWebSecurity=false",
+    "cy:run": "cypress run --browser chrome"
+  },
+  "devDependencies": {
+    "cypress": "^13.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

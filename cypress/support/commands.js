@@ -1,0 +1,22 @@
+// Arquivo reservado para comandos customizados do Cypress.
+// Exemplo de uso:
+// Cypress.Commands.add('login', (email, senha) => { ... });
+
+Cypress.Commands.add('criarContaELogar', () => {
+  cy.visit('/criar-conta');
+  cy.get('input[type="text"]').type('QA Teste');
+  cy.get('input[type="tel"]').type('11999999999');
+  cy.get('input[type="email"]').type(Cypress.env('VALID_EMAIL'));
+  cy.get('input[type="password"]:eq(0)').type(Cypress.env('VALID_PASSWORD'));
+  cy.get('input[type="password"]:eq(1)').type(Cypress.env('VALID_PASSWORD'));
+  cy.on('window:alert', () => true);
+  cy.get('button.btn-primary').click();
+  cy.wait(1500);
+  cy.visit('/');
+  cy.on('window:alert', () => true);
+  cy.get('input[type="email"]').type(Cypress.env('VALID_EMAIL'));
+  cy.get('input[type="password"]').type(Cypress.env('VALID_PASSWORD'));
+  cy.get('button.btn-primary').click();
+  cy.url().should('include', '/sucesso');
+});
+
