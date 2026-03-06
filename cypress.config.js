@@ -9,6 +9,16 @@ module.exports = defineConfig({
     defaultCommandTimeout: 10000,
     pageLoadTimeout: 30000,
     experimentalModifyObstructiveThirdPartyCode: true,
-    setupNodeEvents(on, config) {}
+    setupNodeEvents(on, config) {
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (browser.family === 'chromium') {
+          launchOptions.args.push('--disable-site-isolation-trials')
+          launchOptions.args.push('--disable-web-security')
+          launchOptions.args.push('--allow-running-insecure-content')
+          launchOptions.args.push('--ignore-certificate-errors')
+        }
+        return launchOptions
+      })
+    }
   }
 })

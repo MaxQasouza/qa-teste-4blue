@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
-// Testes funcionais — todos devem passar
+// Testes de bugs documentados — falhas esperadas até correção
 
-describe('Tela de Sucesso — Login', () => {
+describe('Tela de Sucesso — Bugs documentados [FALHA ESPERADA]', () => {
   beforeEach(() => {
     cy.session('loginSession', () => {
       cy.visit('/criar-conta')
@@ -23,25 +23,11 @@ describe('Tela de Sucesso — Login', () => {
     cy.visit('/sucesso?op=login')
   })
 
-  it('CT17 - Deve exibir título "Login realizado com sucesso"', () => {
-    cy.get('h1').should('contain', 'Login realizado com sucesso')
-  })
-
-  it('CT18 - Deve exibir botão "Sair da conta"', () => {
-    cy.get('button.btn-primary').should('contain', 'Sair da conta')
-  })
-})
-
-describe('Tela de Sucesso — Cadastro', () => {
-  beforeEach(() => {
-    cy.visit('/sucesso?op=cadastro')
-  })
-
-  it('CT21 - Deve exibir título "Conta criada com sucesso"', () => {
-    cy.get('h1').should('contain', 'Conta criada com sucesso')
-  })
-
-  it('CT22 - Não deve exibir toast de erro após cadastro bem-sucedido', () => {
+  it('[BUG-002] CT19 - Toast "Erro inesperado" na tela de sucesso', () => {
     cy.get('div.bg-destructive').should('not.exist')
+  })
+
+  it('[BUG-010] CT20 - Sem navegação após login', () => {
+    cy.get('a').should('exist')
   })
 })

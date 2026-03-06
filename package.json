@@ -4,8 +4,10 @@
   "private": true,
   "description": "Suíte de testes E2E com Cypress para o sistema qa-play-sim.lovable.app",
   "scripts": {
-    "cy:open": "cypress open --config chromeWebSecurity=false",
-    "cy:run": "cypress run --browser chrome"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --spec \"cypress/e2e/login.cy.js,cypress/e2e/criar-conta.cy.js,cypress/e2e/sucesso.cy.js\"",
+    "cy:run:bugs": "cypress run --spec \"cypress/e2e/*.bugs.cy.js\"",
+    "cy:run:all": "cypress run --spec \"cypress/e2e/**/*\""
   },
   "devDependencies": {
     "cypress": "^13.7.0"
